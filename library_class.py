@@ -18,12 +18,14 @@ class Library:
     def remove_student(self, student):
         self.students.remove(student)
 
+
     def change_borrowing_limit(self, student, new_limit):
         student.set_borrowing_limit(new_limit)
 
     def see_all_books(self):
         return self.books
 
+    @property
     def see_available_books(self):
         available_books = []
         for book in self.books:
@@ -57,5 +59,6 @@ library.add_book(student_.book.book3)
 library.add_student(student_.student_1)
 library.add_student(student_.student_2)
 library.add_student(student_.student_3)
+
 
 

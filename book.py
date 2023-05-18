@@ -15,7 +15,7 @@ class Book:
         self.all_copy = []
         for i in range(copy):
             self.all_copy.append(BookCopy(self, i + 1))
-        self.books.append(self)
+        # self.books.append(self)
 
     def add_copy(self, other):
         for i in range(self.all_copy[-1].copy_id, self.all_copy[-1].copy_id + other):
@@ -48,8 +48,14 @@ class BookCopy:
         self.due_date = None
         self.availability_status = True
 
-    def change_condition_rating(self, new_rating):
-        self.condition_rating = new_rating
+    @property
+    def change_condition_rating(self, new_rating = None):
+        if new_rating is None:
+            return  self.condition_rating
+        if 10 >= new_rating >= 0:
+            self.condition_rating = (self.condition_rating + new_rating) / 2
+        else:
+            return f'out of range 0 to 10'
 
     def __repr__(self):
         return f"BookCopy({self.book}, {self.copy_id})"

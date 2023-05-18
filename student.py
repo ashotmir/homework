@@ -15,7 +15,7 @@ class Student:
         return f"Name-{self.name}, ID-{self.ID}"
 
     def borrow_book(self, book_):
-        if not book.Book.get_available_copies(book_):
+        if not book_.get_available_copies():
             print("This book is currently not available.")
             return
 
@@ -64,8 +64,12 @@ class Student:
             else:
                 print(f"{copy.book.title} (no due date)")
 
-    def set_borrowing_limit(self,other):
-        self.book_limit = other
+    @property
+    def set_borrowing_limit(self, other=None):
+        if other is None:
+            return self.book_limit
+        else:
+            self.book_limit = other
 
 
 student_1 = Student("John Doe", "123", "johndoe@example.com")
